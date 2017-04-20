@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.demo.web.region.RegionBrowse"
+        focusComponent="regionsTable"
+        lookupComponent="regionsTable"
+        messagesPack="com.company.demo.web.region">
+    <dsContext>
+        <groupDatasource id="regionsDs"
+                         class="com.company.demo.entity.Region"
+                         view="_local">
+            <query>
+                <![CDATA[select e from demo$Region e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="regionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="regionsTable"
+                datasource="regionsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="regionsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="title"/>
+            </columns>
+            <rows datasource="regionsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="regionsTable.create"/>
+                <button id="editBtn"
+                        action="regionsTable.edit"/>
+                <button id="removeBtn"
+                        action="regionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>
